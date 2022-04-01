@@ -1,9 +1,7 @@
 def solution(id_list, report, k):
     
     # dictionary로 관리
-    user_dic = {}
-    for user_name in id_list:
-        user_dic[user_name] = []
+    user_dic = {user_name : [] for user_name in id_list}
     
     for report_id in set(report) :
         report_list = report_id.split()
@@ -25,16 +23,13 @@ def solution(id_list, report, k):
             stopper.append(reported_name)
     
     # 정지 문자 발송
-    maile_list = {}
-    for user_id in user_dic:
-        maile_list[user_id] = 0
+    maile_list = {user_id : 0 for user_id in user_dic}
     
     for user_id in user_dic:
         for stop_id in stopper:
             if stop_id in user_dic[user_id]:
                 maile_list[user_id] += 1
-    result = []
-    for maile in maile_list:
-        result.append(maile_list[maile])
+                
+    result = [maile_list[maile] for maile in maile_list]
 
     return result
